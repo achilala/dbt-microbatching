@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: events
+    schema: events
+    database: raw
+    description: Test data for microbatching
+    loaded_at_field: _loaded_at
+    config:
+      event_time: event_at
+
+    tables:
+      - name: raw_events
+        description: One record per event

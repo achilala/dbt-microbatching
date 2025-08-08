@@ -1,0 +1,23 @@
+default:
+  outputs:
+
+    default_config: &default_config
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      private_key_path: "{{ env_var('DBT_PRIVATE_KEY_PATH') }}"
+      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
+      threads: 10
+      type: snowflake
+      warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
+
+    dev:
+      <<: *default_config
+      database: "{{ env_var('DBT_SNOWFLAKE_DEV_DATABASE') }}"
+      schema: "dbt_{{ env_var('DBT_DEV_SCHEMA_PREFIX') }}"
+
+    prod:
+      <<: *default_config
+      database: "{{ env_var('DBT_SNOWFLAKE_PROD_DATABASE') }}"
+      schema: "default" # default means don't prefix with anything
+
+  target: dev

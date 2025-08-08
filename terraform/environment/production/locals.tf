@@ -1,0 +1,28 @@
+locals {
+  integration_name       = "dbt-microbatching"
+  integration_name_upper = replace(upper(local.integration_name), "-", "_")
+  environment            = "dev"
+  
+  schemas = flatten([
+    for db_key, db_value in var.datasources : [
+      for schema_key, schema_value in db_value.schemas : {
+        db_key     = db_key
+        schema_key = schema_key
+        schema     = schema_value
+      }
+    ]
+  ])
+  
+  tables = flatten([
+    for db_key, db_value in var.datasources : [
+      for schema_key, schema_value in db_value.schemas : [
+        for table_key, table_value in schema_value.tables : {
+          db_key     = db_key
+          schema_key = schema_key
+          table_key  = table_key
+          table      = table_value
+        }
+      ]
+    ]
+  ])
+}
