@@ -1,7 +1,3 @@
-# output "datasources" {
-#   value = var.datasources
-# }
-
 output "datasources" {
-  value = local.schemas
+  value = var.datasources
 }
