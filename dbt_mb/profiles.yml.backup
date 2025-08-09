@@ -1,8 +1,0 @@
-dbt_mb:
-  target: dev
-  outputs:
-    dev:
-      type: duckdb
-      path: "events.duckdb"
-      schema: ""
-      threads: 10
