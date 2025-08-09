@@ -10,5 +10,5 @@ sources:
       event_time: event_at
 
     tables:
-      - name: sample_data
+      - name: test_data
         description: One record per event

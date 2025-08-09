@@ -10,7 +10,7 @@
 
 
 with source as (
-    select * from {{ source('events', 'sample_data') }}
+    select * from {{ source('events', 'test_data') }}
 )
 
 , renamed as (
